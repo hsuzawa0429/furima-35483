@@ -1,24 +1,73 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# テーブル設計
+## users テーブル
+| column          | Type    | Options     |
+| --------------- | ------- | ----------- |
+| nickname        | string  | null: false |
+| email           | string  | null: false |
+| password        | string  | null: false |
+| last_name       | string  | null: false |
+| first_name      | string  | null: false |
+| last_name_kana  | string  | null: false |
+| first_name_kana | string  | null: false |
+| birth_year      | integer | null: false |
+| birth_month     | integer | null: false |
+| birth_day       | integer | null: false |
 
-Things you may want to cover:
+## Association
+- has_many: items
+- has_one: address
+- has_one: credit_card
 
-* Ruby version
+## items テーブル
+| column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| item_name     | string     | null: false                    |
+| detail        | text       | null: false                    |
+| category      | string     | null: false                    |
+| condition     | string     | null: false                    |
+| delivery_fee  | integer    | null: false                    |
+| shipping_area | string     | null: false                    |
+| shipping_days | string     | null: false                    |
+| price         | integer    | null: false                    |
+| user_id       | references | null: false, foreign_key: true |
 
-* System dependencies
+## Association
+- belongs_to: user
+- has_one: image
 
-* Configuration
+## addresses テーブル
+| column         | Type       | Options                        |
+| -------------- | ---------- | ------------------------------ |
+| postal_cord    | integer    | null: false                    |
+| prefectures    | string     | null: false                    |
+| city           | string     | null: false                    |
+| address_detail | string     | null: false                    |
+| building_name  | string     | null: false                    |
+| phone_number   | integer    | null: false                    |
+| user_id        | references | null: false, foreign_key: true |
 
-* Database creation
+## Association
+- belongs_to: user
 
-* Database initialization
+## credit_cards テーブル
+| column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| card_id          | integer    | null: false                    |
+| expiration_year  | integer    | null: false                    |
+| expiration_month | integer    | null: false                    |
+| security_code    | integer    | null: false                    |
+| user_id          | references | null: false, foreign_key: true |
 
-* How to run the test suite
+## Association
+- belongs_to: user
 
-* Services (job queues, cache servers, search engines, etc.)
+## images テーブル
+| column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| item_image | text       | null: false                    |
+| item_id    | references | null: false, foreign_key: true |
 
-* Deployment instructions
-
-* ...
+## Association
+- belongs_to: item
