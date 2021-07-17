@@ -17,8 +17,7 @@
 
 ## Association
 - has_many: items
-- has_one: address
-- has_one: credit_card
+- has_one: buyer
 
 ## items テーブル
 | column        | Type       | Options                        |
@@ -35,33 +34,37 @@
 
 ## Association
 - belongs_to: user
+- has_one: buyer
 - has_one: image
+
+## buyers テーブル
+| column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| card_id          | integer    | null: false                    |
+| expiration_month | integer    | null: false                    |
+| expiration_year  | integer    | null: false                    |
+| security_code    | integer    | null: false                    |
+| user_id          | references | null: false, foreign_key: true |
+| item_id          | references | null: false, foreign_key: true |
+
+## Association
+- belongs_to: user
+- belongs-to: item
+- has_one: address
 
 ## addresses テーブル
 | column         | Type       | Options                        |
 | -------------- | ---------- | ------------------------------ |
-| postal_cord    | integer    | null: false                    |
+| postal_code    | integer    | null: false                    |
 | prefectures    | string     | null: false                    |
 | city           | string     | null: false                    |
 | address_detail | string     | null: false                    |
 | building_name  | string     | null: false                    |
 | phone_number   | integer    | null: false                    |
-| user_id        | references | null: false, foreign_key: true |
+| buyer_id       | references | null: false, foreign_key: true |
 
 ## Association
-- belongs_to: user
-
-## credit_cards テーブル
-| column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| card_id          | integer    | null: false                    |
-| expiration_year  | integer    | null: false                    |
-| expiration_month | integer    | null: false                    |
-| security_code    | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
-
-## Association
-- belongs_to: user
+- belongs_to: buyer
 
 ## images テーブル
 | column     | Type       | Options                        |
