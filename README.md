@@ -15,7 +15,7 @@
 
 ## Association
 - has_many: items
-- has_one: buyer
+- has_many: buyers
 
 ## items テーブル
 | column           | Type       | Options                        |
