@@ -16,6 +16,7 @@
 ## Association
 - has_many: items
 - has_many: destinations
+- has_many: buyers
 
 ## items テーブル
 | column           | Type       | Options                        |
@@ -33,6 +34,18 @@
 ## Association
 - belongs_to: user
 - has_one: destination
+- has_one: buyer
+
+## buyers テーブル
+| column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| user        | references | null: false, foreign_key: true |
+| item        | references | null: false, foreign_key: true |
+
+## Association
+- belongs_to: user
+- belongs_to: item
+- has_one: destination
 
 ## destinations テーブル
 | column         | Type       | Options                        |
@@ -45,7 +58,9 @@
 | phone_number   | string     | null: false                    |
 | user           | references | null: false, foreign_key: true |
 | item           | references | null: false, foreign_key: true |
+| buyer          | references | null: false, foreign_key: true |
 
 ## Association
 - belongs_to: user
 - belongs_to: item
+- belongs_to: buyer
