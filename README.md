@@ -15,7 +15,6 @@
 
 ## Association
 - has_many: items
-- has_many: destinations
 - has_many: buyers
 
 ## items テーブル
@@ -33,7 +32,6 @@
 
 ## Association
 - belongs_to: user
-- has_one: destination
 - has_one: buyer
 
 ## buyers テーブル
