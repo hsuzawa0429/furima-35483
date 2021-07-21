@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
       User.create(nickname: "hiro", email: "aaa@gmail.com", password: "000000", password_confirmation: "000000", last_name: "須沢", first_name: "啓之", last_name_kana: "スザワ", first_name_kana: "ヒロユキ", birthday: "1975-04-29")
       @user = User.new(nickname: "sachie", email: "aaa@gmail.com", password: "111111", password_confirmation: "111111", last_name: "戸田", first_name: "幸恵", last_name_kana: "トダ", first_name_kana: "サチエ", birthday: "1978-04-02")
       @user.valid?
-      expect(user.errors.full_messages).to include("Email has already been taken")
+      expect(@user.errors.full_messages).to include("Email has already been taken")
     end
   end
 end
