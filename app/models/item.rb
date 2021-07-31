@@ -10,7 +10,6 @@ class Item < ApplicationRecord
     validates :item_name
     validates :detail
     validates :image
-    validates :price, length: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
   with_options numericality: { other_than: 1 } do
@@ -20,6 +19,8 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :shipping_day_id
   end
+
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
   belongs_to :user
   has_one_attached :image
