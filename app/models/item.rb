@@ -6,12 +6,11 @@ class Item < ApplicationRecord
     belongs_to_active_hash :prefecture
     belongs_to_active_hash :shipping_day
 
-  belongs_to :user
-  has_one_attached :image
-
   with_options presence: true do
     validates :item_name
     validates :detail
+    validates :image
+    validates :price, length: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
   end
 
   with_options numericality: { other_than: 1 } do
@@ -22,6 +21,6 @@ class Item < ApplicationRecord
     validates :shipping_day_id
   end
 
-  validates :price, presence: true, numericality: { in: 300..9999999 }, format: { with: /\A[0-9]+\z/ }
-
+  belongs_to :user
+  has_one_attached :image
 end
