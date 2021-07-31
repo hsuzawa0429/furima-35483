@@ -73,31 +73,31 @@ RSpec.describe Item, type: :model do
     end
 
     it 'カテゴリーのidが1だった場合登録できない' do
-      @item.category_id = '1'
+      @item.category_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Category must be other than 1")
     end
 
     it '商品の状態のidが1だった場合登録できない' do
-      @item.condition_id = '1'
+      @item.condition_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Condition must be other than 1")
     end
 
     it '配送料の負担のidが1だった場合登録できない' do
-      @item.delivery_fee_id = '1'
+      @item.delivery_fee_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
     end
 
     it '発送元の地域のidが1だった場合登録できない' do
-      @item.prefecture_id = '1'
+      @item.prefecture_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
     end
 
     it '発送までの日数のidが1だった場合登録できない' do
-      @item.shipping_day_id = '1'
+      @item.shipping_day_id = 1
       @item.valid?
       expect(@item.errors.full_messages).to include("Shipping day must be other than 1")
     end
