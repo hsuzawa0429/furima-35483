@@ -76,59 +76,59 @@ RSpec.describe User, type: :model do
       @user.password = 'abc00'
       @user.password_confirmation = 'abc00'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
 
     it 'パスワードが英語のみでは登録できない' do
       @user.password = 'abcdef'
       @user.password_confirmation = 'abcdef'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
 
     it 'パスワードが数字のみでは登録できない' do
       @user.password = '000000'
       @user.password_confirmation = '000000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
 
     it 'パスワードが数字のみでは登録できない' do
       @user.password = 'aｂc０００'
       @user.password_confirmation = 'aｂc０００'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid", "Password confirmation is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid', 'Password confirmation is invalid')
     end
 
     it 'last_nameが漢字・平仮名・カタカナ以外では登録できない' do
       @user.last_name = 'abc000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name is invalid")
+      expect(@user.errors.full_messages).to include('Last name is invalid')
     end
 
     it 'first_nameが漢字・平仮名・カタカナ以外では登録できない' do
       @user.first_name = 'abc000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name is invalid")
+      expect(@user.errors.full_messages).to include('First name is invalid')
     end
 
     it 'last_name_kanaが漢字・平仮名・カタカナ以外では登録できない' do
       @user.last_name_kana = 'abc000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      expect(@user.errors.full_messages).to include('Last name kana is invalid')
     end
 
     it 'first_name_kanaが漢字・平仮名・カタカナ以外では登録できない' do
       @user.first_name_kana = 'abc000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana is invalid")
+      expect(@user.errors.full_messages).to include('First name kana is invalid')
     end
 
     it '重複したメールアドレスの場合登録できない' do
       another_user = FactoryBot.build(:user)
       another_user.email = '＠user.email'
       another_user.valid?
-      expect(another_user.errors.full_messages).to include("Email is invalid")
+      expect(another_user.errors.full_messages).to include('Email is invalid')
     end
   end
 end
