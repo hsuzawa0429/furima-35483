@@ -1,4 +1,7 @@
 class Item < ApplicationRecord
+  belongs_to :user
+  has_one_attached :image
+
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to_active_hash :category
     belongs_to_active_hash :condition
@@ -22,6 +25,4 @@ class Item < ApplicationRecord
 
   validates :price, presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
 
-  belongs_to :user
-  has_one_attached :image
 end
