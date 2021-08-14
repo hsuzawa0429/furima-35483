@@ -22,6 +22,13 @@ const pay = () => {
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
         debugger;
       }
+
+      document.getElementById("buyer_destination[number]").removeAttribute("name");
+      document.getElementById("buyer_destination[exp_month]").removeAttribute("name");
+      document.getElementById("buyer_destination[exp_year]").removeAttribute("name");
+      document.getElementById("buyer_destination[cvc]").removeAttribute("name");
+
+      document.getElementById("charge-form").submit();
     });
   });
 };
