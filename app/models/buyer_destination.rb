@@ -12,6 +12,10 @@ class BuyerDestination
   validates :address_detail
   validates :phone_number, format: {with: /\A[0-9]{11}\z/}
   end
+  
+  with_options numericality: { other_than: 1 } do
+    validates :prefecture_id
+  end
 
   def save
     buyer = Buyer.create(item_id: item_id, user_id: user_id)
