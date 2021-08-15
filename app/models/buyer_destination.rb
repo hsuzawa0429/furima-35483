@@ -1,6 +1,6 @@
 class BuyerDestination
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address_detail, :building_name, :phone_number
+  attr_accessor :user_id, :item_id, :postal_code, :prefecture_id, :city, :address_detail, :building_name, :phone_number, :token
 
   validates :prefecture_id, numericality: {other_than: 1}
 
