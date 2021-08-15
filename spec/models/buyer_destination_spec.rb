@@ -57,6 +57,30 @@ RSpec.describe BuyerDestination, type: :model do
         @destination.valid?
         expect(@destination.errors.full_messages).to include("Token can't be blank")
       end
+
+      it 'user_idが空では登録できない' do
+        @destination.user_id = nil
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idが空では登録できない' do
+        @destination.item_id = nil
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Item can't be blank")
+      end
+
+      it '電話番号は英数字混合では登録できない' do
+        @destination.phone_number = '012345abcde'
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'prefecture_idは1以外でないと登録できない' do
+        @destination.token = nil
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Token can't be blank")
+      end
     end
 
     context "賞品購入記録が保存できる場合" do
