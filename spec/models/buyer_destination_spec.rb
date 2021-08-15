@@ -77,9 +77,9 @@ RSpec.describe BuyerDestination, type: :model do
       end
 
       it 'prefecture_idは1以外でないと登録できない' do
-        @destination.token = nil
+        @destination.prefecture_id = "1"
         @destination.valid?
-        expect(@destination.errors.full_messages).to include("Token can't be blank")
+        expect(@destination.errors.full_messages).to include("Prefecture must be other than 1")
       end
     end
 
