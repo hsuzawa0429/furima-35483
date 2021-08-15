@@ -3,12 +3,12 @@ class BuyersController < ApplicationController
   before_action :move_to_index, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
+    item_params
     @buyer_destination = BuyerDestination.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
+    item_params
     @buyer_destination = BuyerDestination.new(buyer_params)
     if @buyer_destination.valid?
       pay_item
@@ -20,6 +20,10 @@ class BuyersController < ApplicationController
   end
 
   private
+  def item_params
+    @item = Item.find(params[:item_id])
+  end
+
   def buyer_params
     params.require(:buyer_destination).permit(:postal_code, :prefecture_id, :city, :address_detail, :building_name, :phone_number).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
