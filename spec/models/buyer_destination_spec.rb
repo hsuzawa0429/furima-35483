@@ -51,9 +51,19 @@ RSpec.describe BuyerDestination, type: :model do
         @destination.valid?
         expect(@destination.errors.full_messages).to include("Phone number is invalid")
       end
+
+      it 'tokenがないと保存できない' do
+        @destination.token = nil
+        @destination.valid?
+        expect(@destination.errors.full_messages).to include("Token can't be blank")
+      end
     end
 
     context "賞品購入記録が保存できる場合" do
+      it '配送先の情報が全てあると保存できる' do
+        expect(@destination).to be_valid
+      end
+
       it '建物名はなくても保存できる' do
         @destination.building_name = ''
         expect(@destination).to be_valid

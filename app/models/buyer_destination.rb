@@ -11,8 +11,9 @@ class BuyerDestination
   validates :city
   validates :address_detail
   validates :phone_number, format: {with: /\A[0-9]{11}\z/}
+  validates :token
   end
-  
+
   with_options numericality: { other_than: 1 } do
     validates :prefecture_id
   end
