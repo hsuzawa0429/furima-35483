@@ -14,10 +14,6 @@ class BuyerDestination
   validates :token
   end
 
-  with_options numericality: { other_than: 1 } do
-    validates :prefecture_id
-  end
-
   def save
     buyer = Buyer.create(item_id: item_id, user_id: user_id)
     Destination.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address_detail: address_detail, building_name: building_name, phone_number: phone_number, buyer_id: buyer.id)
